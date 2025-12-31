@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Core flood response theme - Deep ocean blues */
+    --background: 210 40% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary: Deep ocean blue */
+    --primary: 210 85% 35%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary: Cyan/Teal */
+    --secondary: 188 75% 45%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 30% 94%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent: Light cyan */
+    --accent: 188 60% 90%;
+    --accent-foreground: 210 85% 25%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Alert colors */
+    --alert-danger: 0 84% 60%;
+    --alert-warning: 38 92% 50%;
+    --alert-safe: 142 76% 36%;
+    --alert-info: 210 85% 55%;
+
+    --border: 210 30% 88%;
+    --input: 210 30% 88%;
+    --ring: 210 85% 35%;
+
+    --radius: 0.75rem;
+
+    /* Water effect colors */
+    --water-light: 195 80% 70%;
+    --water-mid: 200 85% 55%;
+    --water-dark: 210 90% 35%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210, 90%, 35%) 0%, hsl(188, 75%, 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 30%, 98%) 100%);
+    --gradient-water: linear-gradient(180deg, hsl(195, 80%, 70%) 0%, hsl(210, 90%, 35%) 100%);
+    --gradient-danger: linear-gradient(135deg, hsl(0, 84%, 60%) 0%, hsl(0, 72%, 45%) 100%);
+    --gradient-safe: linear-gradient(135deg, hsl(142, 76%, 36%) 0%, hsl(142, 70%, 28%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(210 30% 20% / 0.08);
+    --shadow-md: 0 4px 16px hsl(210 30% 20% / 0.12);
+    --shadow-lg: 0 8px 32px hsl(210 30% 20% / 0.16);
+    --shadow-glow: 0 0 40px hsl(188 75% 45% / 0.3);
+    --shadow-danger: 0 0 30px hsl(0 84% 60% / 0.4);
+    --shadow-safe: 0 0 30px hsl(142 76% 36% / 0.4);
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 215 25% 15%;
+    --sidebar-primary: 210 85% 35%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 188 60% 90%;
+    --sidebar-accent-foreground: 210 85% 25%;
+    --sidebar-border: 210 30% 88%;
+    --sidebar-ring: 210 85% 35%;
+  }
+
+  .dark {
+    --background: 215 35% 8%;
+    --foreground: 210 40% 95%;
+
+    --card: 215 30% 12%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 215 30% 12%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 188 75% 50%;
+    --primary-foreground: 215 35% 8%;
+
+    --secondary: 210 60% 25%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 60%;
+
+    --accent: 210 50% 20%;
+    --accent-foreground: 188 75% 50%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 188 75% 50%;
+
+    --shadow-sm: 0 2px 8px hsl(215 35% 5% / 0.3);
+    --shadow-md: 0 4px 16px hsl(215 35% 5% / 0.4);
+    --shadow-lg: 0 8px 32px hsl(215 35% 5% / 0.5);
+
+    --sidebar-background: 215 35% 8%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 188 75% 50%;
+    --sidebar-primary-foreground: 215 35% 8%;
+    --sidebar-accent: 210 50% 20%;
+    --sidebar-accent-foreground: 188 75% 50%;
+    --sidebar-border: 215 25% 20%;
+    --sidebar-ring: 188 75% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  /* Water ripple animation */
+  .water-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .water-ripple::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, hsl(var(--water-light) / 0.3) 0%, transparent 70%);
+    animation: ripple 4s ease-in-out infinite;
+  }
+
+  @keyframes ripple {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Wave animation */
+  .wave-bg {
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--water-light) / 0.1) 100%);
+    position: relative;
+  }
+
+  .wave-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230099ff' fill-opacity='0.1' d='M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,165.3C672,171,768,213,864,218.7C960,224,1056,192,1152,165.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+    background-size: cover;
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-20px);
+    }
+  }
+
+  /* Pulsing marker */
+  .pulse-marker {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--alert-danger) / 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 15px hsl(var(--alert-danger) / 0);
+    }
+  }
+
+  /* Safe glow */
+  .safe-glow {
+    animation: safe-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes safe-pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--alert-safe) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 25px hsl(var(--alert-safe) / 0.8);
+    }
+  }
+
+  /* Alert banner */
+  .alert-banner {
+    background: linear-gradient(90deg, hsl(var(--alert-danger)) 0%, hsl(var(--alert-warning)) 100%);
+    animation: alert-slide 20s linear infinite;
+  }
+
+  @keyframes alert-slide {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  /* Card hover effect */
+  .hover-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Status badges */
+  .status-danger {
+    @apply bg-destructive/10 text-destructive border border-destructive/20;
+  }
+
+  .status-warning {
+    background: hsl(var(--alert-warning) / 0.1);
+    color: hsl(var(--alert-warning));
+    border: 1px solid hsl(var(--alert-warning) / 0.2);
+  }
+
+  .status-safe {
+    background: hsl(var(--alert-safe) / 0.1);
+    color: hsl(var(--alert-safe));
+    border: 1px solid hsl(var(--alert-safe) / 0.2);
+  }
+
+  .status-info {
+    background: hsl(var(--alert-info) / 0.1);
+    color: hsl(var(--alert-info));
+    border: 1px solid hsl(var(--alert-info) / 0.2);
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+  border-radius: var(--radius);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.leaflet-control-zoom a {
+  border-radius: var(--radius) !important;
+}
